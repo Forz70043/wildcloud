@@ -8,7 +8,7 @@ function connectDB(){
 	$mysqli = new mysqli('','','','');
 	if(!mysqli_connect_errno()) echo "Connected\n";
 	else die("Could not connect to DB: ".$mysqli->connect_error);
-	return $mysqli:
+	return $mysqli;
 }
 
 function disconnectDB($mysqli){
