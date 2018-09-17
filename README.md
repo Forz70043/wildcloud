@@ -1,0 +1,4 @@
+# Requisites:
+* Apache
+* MySql
+
