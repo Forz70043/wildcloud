@@ -1,4 +1,6 @@
 # Requisites:
-* Apache
-* MySql
+* [Apache](http://httpd.apache.org)  
+* [Mysql](https://www.mysql.com)
+
+
 
