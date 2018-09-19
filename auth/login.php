@@ -3,17 +3,19 @@
 session_start();
 
 include_once("../common/inclusioni.php");
-include_once("../includes/secureimage/secureimage.php");
 
-$secureimage= new Secureimage();
+//include_once("../includes/secureimage/secureimage.php");
+//$secureimage= new Secureimage();
 
 if(isset($_POST['submit'])){
-    if($secureimage->check($_POST['security_code']) ==true || (defined('ENV_DEVEL'))){
-        connectDB();
-    }
-    else{
-        $esito = _("Codice di sicureza errato");
-    }
+    /*
+        if($secureimage->check($_POST['security_code']) ==true || (defined('ENV_DEVEL'))){
+            connectDB();
+        }
+        else{
+            $esito = _("Codice di sicureza errato");
+        }
+    */
 }   
 
 ?>
