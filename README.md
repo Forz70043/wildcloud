@@ -5,3 +5,4 @@
 
 ## SetUp
 * Modify in config/db.config.php  your db variables 
+* Take dump of DB
