@@ -4,5 +4,5 @@
 * [PHP](https://www.php.net/)
 
 ## SetUp
-* Modify in config/db.config.php  your db variables 
+* Modify in config/db.config.php your db variables (hostname - user -password -db name) 
 * Take dump of DB
