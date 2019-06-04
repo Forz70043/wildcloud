@@ -1,11 +1,10 @@
 <?php
 
-session_start();
+//session_start();
 
 include_once("../common/inclusioni.php");
 
-//include_once("../includes/secureimage/secureimage.php");
-//$secureimage= new Secureimage();
+$secureimage= new Securimage();
 
 if(isset($_POST['submit'])){
     /*
@@ -42,6 +41,9 @@ if(isset($_POST['submit'])){
                     <input id="inputEmail" placeholder="Email Address" type="email" name="email" required="" autofocus="" class="form-control">
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input id="inputPassword" type="password" placeholder="Password" required="" name="password" class="form-control"><br>
+                    <img id="captcha" src="../includes/securimage/securimage_show.php" alt="CAPTCHA Image" />
+                    <input type="text" name="captcha_code" size="10" maxlength="6" />
+                    <a href="#" onclick="document.getElementById('captcha').src='../includes/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a>
                     <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign In</button>
                     <p class="mt-5 mb-3 text-muted">©</p>
                     
