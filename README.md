@@ -3,6 +3,11 @@
 * [Mysql](https://www.mysql.com)
 * [PHP](https://www.php.net/)
 
+##Libraries
+* [Smarty](https://www.smarty.net/)
+* [Bootstrap](https://getbootstrap.com/)
+* [SecurImage](https://www.phpcaptcha.org/)
+
 ## SetUp
 * Modify in config/db.config.php your db variables (hostname - user -password -db name) 
 * Take dump of DB
