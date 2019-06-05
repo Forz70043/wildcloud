@@ -3,7 +3,7 @@
 * [Mysql](https://www.mysql.com)
 * [PHP](https://www.php.net/)
 
-##Libraries
+### Libraries
 * [Smarty](https://www.smarty.net/)
 * [Bootstrap](https://getbootstrap.com/)
 * [SecurImage](https://www.phpcaptcha.org/)
