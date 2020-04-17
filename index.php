@@ -1,7 +1,10 @@
 <?php
 
-include_once($_SERVER["DOCUMENT_ROOT"]."/wildcloud/common/inclusioni.php");
+include_once($_SERVER["DOCUMENT_ROOT"]."/common/inclusioni.php");
+
 session_start();
-Header("location: auth/login.php");
+
+$smarty = new SmartyEngine();
+$smarty->display('index.tpl');
 
 ?>
