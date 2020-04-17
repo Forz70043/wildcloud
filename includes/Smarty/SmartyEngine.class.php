@@ -8,13 +8,19 @@ class SmartyEngine extends Smarty
 	{
 		parent::__construct();
 
-		$this->setTemplateDir($_SERVER["DOCUMENT_ROOT"].'/includes/Smarty/templates');
+		$this->setTemplateDir($_SERVER["DOCUMENT_ROOT"].'/views');
 		$this->setCompileDir($_SERVER["DOCUMENT_ROOT"].'/includes/Smarty/templates_c');
 		$this->setCacheDir($_SERVER["DOCUMENT_ROOT"].'/includes/Smarty/cache');
 		$this->setConfigDir($_SERVER["DOCUMENT_ROOT"].'/includes/Smarty/configs');
 
 		$this->left_delimiter='[+';
 		$this->right_delimiter='+]';
+	}
+
+	public function display($tpl_component=null){
+		if(isset($tpl_component)) $this->assign('bodyComponents',$tpl_component);
+
+		return parent::display('index.tpl');
 	}
 };
 
