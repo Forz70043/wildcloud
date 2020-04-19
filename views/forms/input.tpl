@@ -9,6 +9,6 @@
 
 <div class="form-group col[+if $col+]-[+$col+][+/if+]">
 	<label for="[+$name+]">[+$label+]</label>
-    <input type="[+$type+]" class="form-control [+$class+]" id="[+$id+]" [+if $ariadescribe+]aria-describedby="[+$ariadescribeName+]" [+/if+] placeholder="[+$placeholder+]" [+if $required+]required[+/if+] [+if $onclick+]onclick="[+$onclick+]"[+/if+] [+if $onchange+]onchange="[+$onchange+]"[+/if+] [+if $readonly+]readonly[+/if+] />
+    <input type="[+$type+]" class="form-control [+$class+]" id="[+$id+]" name="[+$name+]" [+if $ariadescribe+]aria-describedby="[+$ariadescribeName+]" [+/if+] placeholder="[+$placeholder+]" [+if $required+]required[+/if+] [+if $onclick+]onclick="[+$onclick+]"[+/if+] [+if $onchange+]onchange="[+$onchange+]"[+/if+] [+if $readonly+]readonly[+/if+] />
     <small id="[+$ariadescribeName+]" class="form-text text-muted">[+$ariadescribeText+]</small>
  </div>

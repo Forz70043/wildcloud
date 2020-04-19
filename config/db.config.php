@@ -1,8 +1,9 @@
 <?php
 
-define("DB_USER","");
+define("DB_USER","root");
 define("DB_PASSWORD","");
-define("DB_HOST","");
+define("DB_HOST","localhost");
+define("DB",'WILDCLOUD');
 
 /**
  * OO STYLE
@@ -30,7 +31,7 @@ class MySqlConnection{
 function connectDB()
 {
 	$mysqli = new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB);
-	if(!mysqli_connect_errno()) echo "Connected\n";
+	if(!mysqli_connect_errno()) error_log("Connected");
 	else die("Could not connect to DB: ".mysqli_connect_error());
 
 	return $mysqli;
