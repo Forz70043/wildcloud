@@ -1,6 +1,5 @@
 <?php
 include_once($_SERVER["DOCUMENT_ROOT"].'/common/inclusioni.php');
-error_log("doc ROOT ".print_r($_SERVER["DOCUMENT_ROOT"],1));
 
 class SmartyEngine extends Smarty 
 {
@@ -15,6 +14,7 @@ class SmartyEngine extends Smarty
 
 		$this->left_delimiter='[+';
 		$this->right_delimiter='+]';
+		$this->assign('app_name', 'WILDCLOUD');
 	}
 
 	public function display($tpl_component=null){
