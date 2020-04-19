@@ -5,6 +5,7 @@
       <nav class="nav nav-masthead justify-content-center">
         <a class="nav-link active" href="#">Home</a>
         <a class="nav-link" href="auth/login.php">Login</a>
+        <a class="nav-link" href="mvc/controller/auth/register.php">Register</a>
       </nav>
     </div>
   </header>
