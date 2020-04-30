@@ -1,8 +1,8 @@
 <?php
 
 include_once($_SERVER['DOCUMENT_ROOT']."/common/inclusioni.php");
-$smarty = new SmartyEngine();
 
+$form=new RegisterForm();
 
 if(isset($_POST['send']))
 {
@@ -25,6 +25,6 @@ if(isset($_POST['send']))
 
 
 
-$smarty->display('register.tpl');
+$smarty->displayForm($form,'register.tpl');
 
 ?>
