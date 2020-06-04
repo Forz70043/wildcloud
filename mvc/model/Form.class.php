@@ -1,23 +1,25 @@
 <?php
-
-include_once($_SERVER['DOCUMENT_ROOT'].'/common/inclusioni.php');
+include_once($_SERVER["DOCUMENT_ROOT"]."/common/inclusioni.php");
 
 class Form {
-    
+
     public    $fields;
     protected $required;
     protected $url;
     protected $method='post';
     protected $actions;
+    protected $notice;
     public    $title;
+
 
     public function __construct($fields=array(),$title='',$required=null)
     {
         $this->setFields($fields);
         $this->actions=array();
+        $this->notice=new Notice();
     }
 
-public function __get($name){
+    public function __get($name){
         if(array_key_exists($name,$this->fields)) return $this->fields[$name];
         return false;
     }
@@ -47,6 +49,15 @@ public function __get($name){
         $this->method=$method;
     }
     
+    public function getError($field='',$c='.'){
+        return implode($c,$this->notice->getError($field)); 
+    }
+
+    public function getErrors($field='')
+    {
+        return $this->notice->getError($field);
+    }
+
     // Gestione Azioni
     public function getActions(){
         return $this->actions;
@@ -62,9 +73,15 @@ public function __get($name){
         unset($this->actions[$name]);
     }
 
-    //must be complete !!!!!
-    public function setStandardActions(){
-
+    public function setStandardActions()
+    {
+        $this->actions=array(
+            'save'      =>  new ActionWrite(_('Salva'),true,'btn-primary save'),
+            'delete'    =>  new ActionWrite(_('Elimina'),false,'btn-danger delete',"javascript: if(confirm('"._('Conferma Eliminazione?')."')) this.form.action='delete.php?confirm=1'; else return false;"),
+            'reset'     =>  new Action(_('Ripristina'),false,'btn-light reset',"javascript: window.location=this.form.action;"/*window.location.href;"*/,'button'),
+        );
+        $this->actions['reset']->type='button';
+        $this->actions['delete']->novalidate=true;
     }
 
     /* GENERIC METHODS FOR FIELDS */
@@ -98,12 +115,15 @@ public function __get($name){
         $valid=true;
 
     }
+    
+    public function setRequired($fields=array()){
+        $this->required=$fields;
+    }
 
 
     //AGGIUNGERE ERRORI - SUCCESS - WARNING 
 
 };
-
 
 
 ?>

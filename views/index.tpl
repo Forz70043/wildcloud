@@ -1,29 +1,20 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WildCloud</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="/includes/bootstrap/css/bootstrap.css"/>
-    [+if !isset($bodyComponents)+]
-      <link rel="stylesheet" type="text/css" media="screen" href="/css/cover.css"/>
-    [+/if+]
-    <link rel='stylesheet' type='text/css' href='/includes/fontAwesome/css/all.css'/>
-    <link rel='stylesheet' type="text/css" href='/includes/mCustomScrollBar/jquery.mCustomScrollbar.css'>
-    <script src='/includes/jQuery/jQuery-3.5.0.js'></script>
-    <script src='/includes/mCustomScrollBar/js/minified/jquery.mCustomScrollbar.min.js'></script>
-    <script src="/includes/bootstrap/js/bootstrap.js"></script>
-    <script src='/includes/fontAwesome/js/all.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      [+include file="header.tpl" app_name=$app_name +]
   </head>
-  <body>
-    [+if isset($bodyComponents)+]
+  <body onload="splash(1000)">
+    [+if isset($PAGE_CONTENT)+]
       <div class="container">
-        [+include file=$bodyComponents +]
+        [+include file=$PAGE_CONTENT +]
       </div>
-    [+else+][+include file='views/cover.tpl'+][+/if+]
+    [+else+]
+      [+include file="navbar.tpl"+]
+      [+include file="notice.tpl"+]
+      [+if isset($view)+]
+        [+include file=$view +]
+      [+/if+]
+      [+include file="footer.tpl"+]
+    [+/if+]
   </body>
 </html>

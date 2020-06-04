@@ -6,10 +6,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/includes/bootstrap/css/bootstrap.css"/>
 <link rel='stylesheet' type='text/css' href='/includes/fontAwesome/css/all.css'/>
 <link rel='stylesheet' type="text/css" href='/includes/mCustomScrollBar/jquery.mCustomScrollbar.css'>
-
-[+if !isset($bodyComponents)+]
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/cover.css"/>
-[+/if+]
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet"> 
 
 <script src='/includes/jQuery/jQuery-3.5.0.js'></script>
 <script src='/includes/mCustomScrollBar/js/minified/jquery.mCustomScrollbar.min.js'></script>

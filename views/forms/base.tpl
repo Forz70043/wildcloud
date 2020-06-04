@@ -8,11 +8,12 @@
                 <div class="form-group">
                     [+include file=$formTpl+]
                 </div>
-                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                [+assign var='actions' value=$form->getActions()+]
+
+                <button class="btn btn-primary" type="submit" name="submit">Invia</button>
             </form>
         </div>
         <div class="card-footer text-muted">
-            <!--<a href="#" class="btn btn-primary">Submit</a>-->
         </div>
     </div>
 </div>
