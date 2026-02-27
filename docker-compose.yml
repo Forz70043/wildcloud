@@ -1,0 +1,35 @@
+services:
+  php-server:
+    build: .
+    container_name: php85_web
+    ports:
+      - "8080:80" # http://localhost:8080
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - dev-network
+
+  db:
+    image: mysql:8.0
+    container_name: php85_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: vanilla
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    driver: bridge
+
+volumes:
+  db_data:
