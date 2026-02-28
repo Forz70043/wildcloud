@@ -6,6 +6,11 @@ services:
       - "8080:80" # http://localhost:8080
     volumes:
       - .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
     depends_on:
       - db
     networks:
@@ -16,10 +21,10 @@ services:
     container_name: php85_db
     restart: always
     environment:
-      MYSQL_DATABASE: vanilla
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
     ports:
       - "3306:3306"
     volumes:

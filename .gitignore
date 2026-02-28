@@ -1,1 +1,4 @@
 includes/Smarty/templates_c/*
+/mysql_data/
+.env
+/vendor/
