@@ -1,0 +1,25 @@
+{# views/register.twig #}
+{% extends "layout/base.twig" %}
+
+{% block title %}Registrazione - WildCloud{% endblock %}
+
+{% block content %}
+    <h2>Crea il tuo account</h2>
+
+    {% if error %}
+        <blockquote style="border-color: red;">{{ error }}</blockquote>
+    {% endif %}
+
+    <form method="POST">
+        <label>Username</label>
+        <input type="text" name="username" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Registrati</button>
+    </form>
+{% endblock %}

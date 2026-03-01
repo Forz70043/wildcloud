@@ -1,0 +1,38 @@
+{# views/layout/base.twig #}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}WildCloud{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        nav { margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding: 1rem 0; }
+        .container { max-width: 800px; margin: 0 auto; }
+        footer { margin-top: 3rem; font-size: 0.8rem; text-align: center; opacity: 0.7; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <strong>WildCloud 8.5</strong> |
+        <a href="index.php">Home</a>
+        {% if session.user_id %}
+            | <a href="index.php?page=dashboard">Dashboard</a>
+            | <a href="index.php?page=logout">Logout ({{ session.username }})</a>
+        {% else %}
+            | <a href="index.php?page=login">Login</a>
+            | <a href="index.php?page=register">Registrati</a>
+        {% endif %}
+    </nav>
+
+    <main>
+        {# Questo è il buco che verrà riempito dalle altre pagine #}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        &copy; {{ "now"|date("Y") }} - WildCloud Project
+    </footer>
+</div>
+</body>
+</html>
