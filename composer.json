@@ -12,5 +12,7 @@
       "name": "Alfonso Pisicchio"
     }
   ],
-  "require": {}
+  "require": {
+    "twig/twig": "^3.0"
+  }
 }
