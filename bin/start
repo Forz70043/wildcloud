@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -o errexit
+
+RUNNING_CONTAINERS=$(docker-compose ps --services --filter "status=running")
+
+if [[ "$RUNNING_CONTAINERS" == *"php-server"* ]]; then
+    echo "--- Services active! ---"
+    echo "To restart, use: bin/restart"
+    exit 0
+fi
+
+# 1. Check Resource (opt)
+# limit 2GB
+MEM=$(docker info | grep "Total Memory" | cut -d':' -f2 | xargs | sed s/GiB//)
+if (( $(echo "$MEM < 1.8" | bc -l) )); then
+    echo "Warning: Docker less than 2GB RAM. Could be slow."
+fi
+
+# 2. Mod NO-DEV (no Xdebug or heavy tool)
+if [ "$1" == "--no-dev" ]; then
+  echo "Start mod Prod (no tool dev)..."
+  docker-compose up -d --remove-orphans "${@:2}"
+  exit $?
+fi
+
+# 3. Check critic volumes
+CRITICAL_FILES=("./src" "./vendor" "./views" "docker-compose.yml")
+IS_VALID=true
+
+for file in "${CRITICAL_FILES[@]}"; do
+  if [ ! -e "$file" ]; then
+    echo "ERROR: file or dir '$file' missing!"
+    IS_VALID=false
+  fi
+done
+
+if [ "$IS_VALID" = false ]; then
+    echo "Error to start: missing file mount."
+    exit 1
+fi
+
+# 4. Start Docker
+echo "Start container WildCloud..."
+docker-compose up -d --remove-orphans "$@"
+
+# 5. Clean automatic Cache Twig (if exist)
+if [ -d "./storage/cache/twig" ]; then
+    echo "Pulizia cache Twig..."
+    rm -rf ./storage/cache/twig/*
+fi
+
+echo "---------------------------------------------------"
+echo "WildCloud online: http://localhost:8080"
+echo "Xdebug listening port 9003"
+echo "---------------------------------------------------"
