@@ -18,3 +18,21 @@ msgstr "Password"
 
 msgid "Invalid credentials"
 msgstr "Credenziali non valide"
+
+msgid "Your files, everywhere."
+msgstr "I tuoi file, ovunque."
+
+msgid "WildCloud 8.5 is the faster, safer, and modern way to store your data."
+msgstr "WildCloud 8.5 è il modo più veloce, sicuro e moderno per archiviare i tuoi dati."
+
+msgid "Go to your Dashboard"
+msgstr "Vai alla tua Dashboard"
+
+msgid "or Create an Account"
+msgstr "o crea un account"
+
+msgid "Speed"
+msgstr "Velocità"
+
+msgid "Security"
+msgstr "Sicurezza"

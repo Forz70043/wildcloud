@@ -2,7 +2,7 @@
 
 namespace WildCloud\Models;
 
-class User
+readonly class User
 {
     /**
      * @param int $id
@@ -11,10 +11,10 @@ class User
      * @param string $passwordHash
      */
     public function __construct(
-        public readonly int $id,
-        public readonly string $username,
-        public readonly string $email,
-        private readonly string $passwordHash
+        public int     $id,
+        public string  $username,
+        public string  $email,
+        private string $passwordHash
     ) {}
 
     /**
