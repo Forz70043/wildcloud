@@ -17,11 +17,16 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libwebp-dev \
     libfreetype6-dev \
+    gettext \
+    locales \
     zip \
     unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install gd pdo pdo_mysql
+    && docker-php-ext-install gd pdo pdo_mysql gettext
 
 RUN a2enmod rewrite
+
+RUN locale-gen it_IT.UTF-8 \
+    && locale-gen en_US.UTF-8
 
 WORKDIR /var/www/html
