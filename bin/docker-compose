@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -o errexit
+
+if docker compose version > /dev/null 2>&1; then
+  DOCKER_BIN=$(command -v docker)
+  DOCKER_COMPOSE="${DOCKER_BIN} compose"
+else
+  DOCKER_COMPOSE=$(command -v docker-compose)
+fi
+#"compose.healthcheck.yaml"
+COMPOSE_FILES=("docker-compose.yml")
+
+# If --no-dev is passed to this script, we won't load the compose.dev.yaml file,
+# but this argument should be removed so it isn't passed to docker compose.
+if [ "$1" == "--no-dev" ]; then
+  # Remove the "--no-dev" argument so it isn't passed to docker compose
+  shift 1
+else
+  if [ -f "compose.dev.yaml" ]; then
+      COMPOSE_FILES+=("compose.dev.yaml")
+    fi
+fi
+
+# Loop over the list of compose files, and prefix them with -f.
+# This ensures paths with spaces aren't split when passed as parameters.
+COMPOSE_FILES_PREFIXED=()
+for file in "${COMPOSE_FILES[@]}"; do
+  COMPOSE_FILES_PREFIXED+=("-f" "$file")
+done
+
+${DOCKER_COMPOSE} "${COMPOSE_FILES_PREFIXED[@]}" "$@"

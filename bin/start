@@ -40,12 +40,12 @@ if [ "$IS_VALID" = false ]; then
 fi
 
 # 4. Start Docker
-echo "Start container WildCloud..."
+echo "Start container ..."
 docker-compose up -d --remove-orphans "$@"
 
 # 5. Clean automatic Cache Twig (if exist)
 if [ -d "./storage/cache/twig" ]; then
-    echo "Pulizia cache Twig..."
+    echo "Clean cache Twig..."
     rm -rf ./storage/cache/twig/*
 fi
 

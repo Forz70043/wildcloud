@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 [command] [args...]"
+    echo "Example: $0 php -v"
+    exit 1
+fi
+
+
+[ -z "$1" ] && echo "Please specify a CLI command (ex. ls)" && exit
+bin/docker-compose exec php-server "$@"
