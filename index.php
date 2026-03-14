@@ -54,6 +54,6 @@ switch ($page) {
         break;
 
     default:
-        echo $view->render('home.twig');
+        return $view->render('home.twig');
         break;
 }
