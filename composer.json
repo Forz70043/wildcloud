@@ -1,0 +1,19 @@
+{
+  "name": "forz70043/wildcloud",
+  "description": "WildCloud",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "WildCloud\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Alfonso Pisicchio"
+    }
+  ],
+  "require": {
+    "twig/twig": "^3.0",
+    "ext-gettext": "*"
+  }
+}

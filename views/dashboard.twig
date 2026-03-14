@@ -1,0 +1,59 @@
+{# views/dashboard.twig #}
+{% extends "layout/base.twig" %}
+
+{% block title %}{{ __("Dashboard") }} - WildCloud{% endblock %}
+
+{% block content %}
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h1>{{ __("Welcome back") }}, {{ username }}!</h1>
+        <a href="index.php?page=logout" class="button" style="background-color: #d32f2f;">{{ __("Logout") }}</a>
+    </header>
+
+    <section id="upload-section" style="background: #f4f4f4; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h3>{{ __("Upload a new file") }}</h3>
+        <form action="index.php?page=upload" method="POST" enctype="multipart/form-data" style="display: flex; gap: 1rem; align-items: center;">
+            <input type="file" name="cloud_file" required>
+            <button type="submit">{{ __("Upload") }}</button>
+        </form>
+    </section>
+
+    <section id="files-section">
+        <h2>{{ __("Your Files") }}</h2>
+
+        {% if files is empty %}
+            <p style="font-style: italic; color: #666;">
+                {{ __("You haven't uploaded any files yet.") }}
+            </p>
+        {% else %}
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr style="border-bottom: 2px solid #ccc;">
+                    <th style="text-align: left; padding: 10px;">{{ __("Filename") }}</th>
+                    <th style="text-align: left; padding: 10px;">{{ __("Size") }}</th>
+                    <th style="text-align: left; padding: 10px;">{{ __("Type") }}</th>
+                    <th style="text-align: left; padding: 10px;">{{ __("Date") }}</th>
+                    <th style="text-align: right; padding: 10px;">{{ __("Actions") }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for file in files %}
+                    <tr style="border-bottom: 1px solid #eee;">
+                        <td style="padding: 10px;"><strong>{{ file.filename }}</strong></td>
+                        {# Usiamo la funzione format_bytes definita nella classe View #}
+                        <td style="padding: 10px;">{{ format_bytes(file.filesize) }}</td>
+                        <td style="padding: 10px;"><small>{{ file.mime_type }}</small></td>
+                        <td style="padding: 10px;">{{ file.created_at|date("d/m/Y H:i") }}</td>
+                        <td style="padding: 10px; text-align: right;">
+                            <a href="index.php?page=download&id={{ file.id }}" title="{{ __("Download") }}">💾</a>
+                            <a href="index.php?page=delete&id={{ file.id }}"
+                               title="{{ __("Delete") }}"
+                               style="margin-left: 10px; color: red;"
+                               onclick="return confirm('{{ __("Are you sure?") }}')">🗑️</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </section>
+{% endblock %}

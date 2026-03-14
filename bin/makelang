@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -o errexit
+echo "Search *.po files"
+find translations -name "*.po"
+echo "Compile translations in progress..."
+
+# Find all files .po in subfolder of translations/
+# use msgfmt for create related .mo
+find translations -name "*.po" | while read -r file; do
+    mo_file="${file%.po}.mo"
+    echo "Compiling: $file -> $mo_file"
+    # Exec command inside container for use binary msgfmt
+    bin/clinotty msgfmt "$file" -o "$mo_file"
+done
+
+echo "Translation updated successfully!"

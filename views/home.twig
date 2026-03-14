@@ -1,0 +1,41 @@
+{# views/home.twig #}
+{% extends "layout/base.twig" %}
+
+{% block title %}{{ __("Welcome to WildCloud") }}{% endblock %}
+
+{% block content %}
+    <section style="text-align: center; padding: 3rem 0;">
+        <h1>{{ __("Your files, everywhere.") }}</h1>
+        <p style="font-size: 1.2rem; opacity: 0.8;">
+            {{ __("WildCloud 8.5 is the faster, safer, and modern way to store your data.") }}
+        </p>
+
+        <div style="margin-top: 2rem;">
+            {% if session.user_id|default(false) %}
+                <a href="index.php?page=dashboard" class="button">
+                    {{ __("Go to your Dashboard") }}
+                </a>
+            {% else %}
+                <a href="index.php?page=login" class="button">
+                    {{ __("Login") }}
+                </a>
+                <a href="index.php?page=register" style="margin-left: 1rem;">
+                    {{ __("or Create an Account") }}
+                </a>
+            {% endif %}
+        </div>
+    </section>
+
+    <hr>
+
+    <section style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+        <div>
+            <h3>🚀 {{ __("Speed") }}</h3>
+            <p>{{ __("Powered by PHP 8.5 and Docker technology.") }}</p>
+        </div>
+        <div>
+            <h3>🔒 {{ __("Security") }}</h3>
+            <p>{{ __("Your data is encrypted and stored in your private vanilla database.") }}</p>
+        </div>
+    </section>
+{% endblock %}

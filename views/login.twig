@@ -1,0 +1,16 @@
+{# views/login.twig #}
+{% extends "layout/base.twig" %}
+
+{% block content %}
+    <h1>{{ __("Welcome to WildCloud") }}</h1>
+
+    <form method="POST">
+        <label>{{ __("Username") }}</label>
+        <input type="text" name="username">
+
+        <label>{{ __("Password") }}</label>
+        <input type="password" name="password">
+
+        <button type="submit">{{ __("Login") }}</button>
+    </form>
+{% endblock %}
