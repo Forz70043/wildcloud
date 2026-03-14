@@ -11,7 +11,7 @@
         </p>
 
         <div style="margin-top: 2rem;">
-            {% if session.user_id %}
+            {% if session.user_id|default(false) %}
                 <a href="index.php?page=dashboard" class="button">
                     {{ __("Go to your Dashboard") }}
                 </a>

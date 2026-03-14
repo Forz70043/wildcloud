@@ -16,7 +16,7 @@
     <nav>
         <strong>WildCloud 8.5</strong> |
         <a href="index.php">Home</a>
-        {% if session.user_id %}
+        {% if session.user_id|default(false) %}
             | <a href="index.php?page=dashboard">Dashboard</a>
             | <a href="index.php?page=logout">Logout ({{ session.username }})</a>
         {% else %}

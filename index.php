@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use WildCloud\Core\Database;
 use WildCloud\Services\AuthService;
 use WildCloud\Core\View;
+use WildCloud\Controllers\User;
 
 session_start([
     'cookie_httponly' => true,
@@ -11,6 +12,7 @@ session_start([
     'use_strict_mode' => true,
 ]);
 
+// --- I18n Setup ---
 $lang = $_SESSION['lang'] ?? 'it_IT';
 $locale = $lang . ".UTF-8";
 
@@ -23,23 +25,30 @@ bindtextdomain($domain, __DIR__ . '/translations');
 bind_textdomain_codeset($domain, 'UTF-8');
 textdomain($domain);
 
+// --- Dependencies ---
 $db = new Database();
 $auth = new AuthService($db);
-$view = new View(__DIR__ . getenv('VIEWS_FOLDER') ?: '/views', true);
-$user = new \WildCloud\Controllers\User($auth, $view);
+
+$viewsPath = __DIR__ . (getenv('VIEWS_FOLDER') ?: '/views');
+$view = new View($viewsPath, true);
+
+$userController = new User($auth, $view);
 $page = $_GET['page'] ?? 'home';
 
+$response = "";
+
+// --- Router ---
 switch ($page) {
     case 'login':
-        $response = $user->login();
+        $response = $userController->login();
         break;
 
     case 'register':
-        $response = $user->register();
+        $response = $userController->register();
         break;
 
     case 'logout':
-        $user->logout();
+        $userController->logout();
         break;
 
     case 'dashboard':
@@ -48,12 +57,15 @@ switch ($page) {
             exit;
         }
 
-        echo $view->render('dashboard.twig', [
-            'username' => $_SESSION['username']
+        $response = $view->render('dashboard.twig', [
+            'username' => $_SESSION['username'],
+            'files' => $userFiles ?? []
         ]);
         break;
 
     default:
-        return $view->render('home.twig');
+        $response = $view->render('home.twig');
         break;
 }
+
+echo $response;
